@@ -1,0 +1,10 @@
+{
+  "survey-title": "We value your feedback",
+  "survey-description": "Your feedback will help us improve our service better. Please give us a few minutes. Thank you!",
+  "survey-question-type": "Choose the reason for calling KBZ Call Center.",
+  "survey-question-rating": " On a scale of 0-10, how likely are you to recommend your friends and families to call KBZ Call Center?",
+  "survey-question-comment": "Please specify the type of service for the rating given above.",
+  "survey-question-phno": "Please share your contact Info.",
+  "survey-placeholder-comment": "Enter comment for rating. ",
+  "survey-placeholder-phno": "Enter Phone No"
+}
