@@ -1,14 +1,18 @@
 import { Avatar, Group, Menu, Text, UnstyledButton } from '@mantine/core';
 import { logout } from '@store/authSlice';
+import { useAppSelector } from '@store/index';
 import { IconChevronDown, IconLogout } from '@tabler/icons';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export function ProfileAvatar() {
   const dispatch = useDispatch();
-  const { user } = useSelector((state: any) => state.auth);
+  const navigate = useNavigate();
+  const { user } = useAppSelector((state) => state.auth);
 
   const handleLogout = async () => {
     dispatch(logout());
+    navigate('/');
   };
 
   if (!user) return <Avatar radius="xl" onClick={handleLogout} />;

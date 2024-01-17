@@ -39,7 +39,7 @@ export function NavbarWrapper({ open, onClose, children }: NavbarWrapperProps) {
   }
 
   return (
-    <Navbar className={classes.navbar} width={{ base: !open ? 60 : 220 }}>
+    <Navbar className={classes.navbar} width={{ base: !open ? 60 : 270 }}>
       {children}
     </Navbar>
   );

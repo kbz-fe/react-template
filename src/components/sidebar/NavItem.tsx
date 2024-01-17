@@ -6,7 +6,7 @@ import { useIsMobile } from '@hooks/useIsMobile';
 
 const useStyles = createStyles((theme) => ({
   root: {
-    height: '58px',
+    height: '48px',
     padding: `${theme.spacing.xs} ${theme.spacing.md}`,
     gap: theme.spacing.xs,
   },
@@ -61,7 +61,7 @@ export function NavItem({ item, hidden, isChild, onClick }: NavItemProps) {
         toggle();
         if (!item.children) handleClick(item.to);
       }}
-      icon={item.icon && <item.icon size={22} />}
+      icon={item.icon && <item.icon size={20} />}
       active={isChild ? !hidden && Boolean(isActive) : Boolean(isActive)}
       childrenOffset={0}
       style={{
