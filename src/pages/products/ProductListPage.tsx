@@ -1,13 +1,13 @@
+import { Box, Divider, NavLink, Stack, useMantineTheme } from '@mantine/core';
 import { MRT_ColumnDef } from 'mantine-react-table';
+import { Link } from 'react-router-dom';
+import { Card } from '@components/common';
 import { DataTable, renderAmountCell } from '@components/core';
+import { useIsMobile } from '@hooks/useIsMobile';
 import { useParamsHelper } from '@hooks/useParamsHelper';
 import { useGetProductsQuery } from '@services/products';
 import { ActionItem } from './components/ActionItems';
 import { Toolbar } from './components/Toolbar';
-import { Card } from '@components/common';
-import { Box, Divider, NavLink, Stack, useMantineTheme } from '@mantine/core';
-import { Link } from 'react-router-dom';
-import { useIsMobile } from '@hooks/useIsMobile';
 
 const columns: MRT_ColumnDef<Product>[] = [
   {
@@ -80,12 +80,12 @@ export function ProductListPage() {
           enableRowActions
           data={data?.products ?? []}
           total={data?.total}
-          title="All Product List"
           state={{
             isLoading,
           }}
           actions={<Toolbar />}
           renderRowActions={({ row }) => <ActionItem row={row} />}
+          positionActionsColumn="last"
         />
       </Box>
     </Card>

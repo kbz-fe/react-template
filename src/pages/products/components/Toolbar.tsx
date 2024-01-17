@@ -5,7 +5,13 @@ import { Search } from '@components/common';
 
 export function Toolbar() {
   return (
-    <Group position="apart" mb={32}>
+    <Group
+      position="apart"
+      mb={32}
+      style={{
+        flexGrow: 1,
+      }}
+    >
       <Search />
       <Button
         component={NavLink}
