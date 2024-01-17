@@ -55,7 +55,7 @@ export function NavItem({ item, hidden, isChild, onClick }: NavItemProps) {
 
   return (
     <NavLink
-      opened={opened}
+      opened={hidden ? false : opened}
       label={hidden ? '' : item.label}
       onClick={() => {
         toggle();
@@ -63,7 +63,10 @@ export function NavItem({ item, hidden, isChild, onClick }: NavItemProps) {
       }}
       icon={item.icon && <item.icon size={22} />}
       active={isChild ? !hidden && Boolean(isActive) : Boolean(isActive)}
-      childrenOffset={36}
+      childrenOffset={0}
+      style={{
+        paddingLeft: isChild ? 36 : 16,
+      }}
       classNames={{
         root: classes.root,
         label: isActive ? classes.activeLabel : classes.label,

@@ -1,10 +1,9 @@
 import { useMemo } from 'react';
-import { Group, Space, Title } from '@mantine/core';
+import { Box, Group, Space, Title } from '@mantine/core';
 import {
   MantineReactTable,
   type MantineReactTableProps,
 } from 'mantine-react-table';
-import { Card } from '@components/common';
 import { Pagination } from './Pagination';
 
 interface TableProps {
@@ -25,7 +24,7 @@ export function DataTable<TData extends Record<string, any> = object>({
   }, [total]);
 
   return (
-    <Card>
+    <Box>
       <Group pb="md" position="apart" align="baseline">
         {title && (
           <Title order={5} c="primary">
@@ -64,6 +63,6 @@ export function DataTable<TData extends Record<string, any> = object>({
         {...props}
       />
       <Pagination total={totalPage} />
-    </Card>
+    </Box>
   );
 }

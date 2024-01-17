@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Page404 } from '@components/page';
-import { DashboardLayout, RootLayout } from '@layouts';
+import { DashboardLayout, ProductLayout, RootLayout } from '@layouts';
 import { LoginPage } from '@pages/auth';
 import { DashboardPage } from '@pages/dashboard';
 import {
@@ -37,19 +37,25 @@ export const router = createBrowserRouter([
             children: [
               {
                 path: 'products',
-                element: <ProductListPage />,
-              },
-              {
-                path: 'products/create',
-                element: <ProductCreatePage />,
-              },
-              {
-                path: 'products/:productId',
-                element: <ProductDetailPage />,
-              },
-              {
-                path: 'products/edit/:productId',
-                element: <ProductUpdatePage />,
+                // element: <ProductLayout />,
+                children: [
+                  {
+                    index: true,
+                    element: <ProductListPage />,
+                  },
+                  {
+                    path: 'create',
+                    element: <ProductCreatePage />,
+                  },
+                  {
+                    path: ':productId',
+                    element: <ProductDetailPage />,
+                  },
+                  {
+                    path: 'edit/:productId',
+                    element: <ProductUpdatePage />,
+                  },
+                ],
               },
               {
                 path: 'orders',

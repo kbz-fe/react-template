@@ -4,6 +4,10 @@ import { useParamsHelper } from '@hooks/useParamsHelper';
 import { useGetProductsQuery } from '@services/products';
 import { ActionItem } from './components/ActionItems';
 import { Toolbar } from './components/Toolbar';
+import { Card } from '@components/common';
+import { Box, Divider, NavLink, Stack, useMantineTheme } from '@mantine/core';
+import { Link } from 'react-router-dom';
+import { useIsMobile } from '@hooks/useIsMobile';
 
 const columns: MRT_ColumnDef<Product>[] = [
   {
@@ -42,6 +46,8 @@ const columns: MRT_ColumnDef<Product>[] = [
 
 export function ProductListPage() {
   const { getParam } = useParamsHelper();
+  const theme = useMantineTheme();
+  const isMobile = useIsMobile();
 
   const limit = getParam('limit') || undefined;
   const skip = getParam('skip') || undefined;
@@ -54,17 +60,34 @@ export function ProductListPage() {
   });
 
   return (
-    <DataTable
-      columns={columns}
-      enableRowActions
-      data={data?.products ?? []}
-      total={data?.total}
-      title="All Product List"
-      state={{
-        isLoading,
+    <Card
+      pl={0}
+      style={{
+        display: 'flex',
+        flexDirection: isMobile ? 'column' : 'row',
+        height: '100%',
       }}
-      actions={<Toolbar />}
-      renderRowActions={({ row }) => <ActionItem row={row} />}
-    />
+    >
+      <Stack style={{ flexBasis: 180, gap: 0, fontWeight: 500 }}>
+        <NavLink active component={Link} to="#" label="Inbox" />
+      </Stack>
+
+      <Divider orientation="vertical" mr={theme.spacing.xs} />
+
+      <Box style={{ flexGrow: 1, overflowX: 'scroll' }}>
+        <DataTable
+          columns={columns}
+          enableRowActions
+          data={data?.products ?? []}
+          total={data?.total}
+          title="All Product List"
+          state={{
+            isLoading,
+          }}
+          actions={<Toolbar />}
+          renderRowActions={({ row }) => <ActionItem row={row} />}
+        />
+      </Box>
+    </Card>
   );
 }
