@@ -17,7 +17,7 @@ export function ProductCreatePage() {
   useEffect(() => {
     if (isSuccess) {
       showNotification({ message: 'Product created', color: 'green' });
-      navigate('/d/products');
+      navigate('/d/stats/products/');
     }
   });
 

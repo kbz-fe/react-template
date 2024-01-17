@@ -2,7 +2,7 @@ import { showNotification } from '@mantine/notifications';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { DASHBOARD_ROUTE } from '@config/const';
-import { useUserStore } from '@hooks/useUser';
+import { useUserStore } from '@hooks/_useUser';
 import { login } from '@services/auth';
 import { setAuth } from '@utils/auth';
 

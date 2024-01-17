@@ -39,7 +39,7 @@ export function NavbarWrapper({ open, onClose, children }: NavbarWrapperProps) {
   }
 
   return (
-    <Navbar className={classes.navbar} width={{ base: !open ? 60 : 300 }}>
+    <Navbar className={classes.navbar} width={{ base: !open ? 60 : 240 }}>
       {children}
     </Navbar>
   );
@@ -55,11 +55,10 @@ export function Sidebar({ open, onClose }: NavbarMenusProps) {
         scrollHideDelay={0}
         component={ScrollArea}
         className={classes.section}
-        my="md"
       >
         {menus.map((item) => (
           <NavItem
-            {...item}
+            item={item}
             hidden={!open}
             key={item.label}
             onClick={onClose}

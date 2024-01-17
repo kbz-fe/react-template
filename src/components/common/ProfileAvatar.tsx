@@ -1,7 +1,7 @@
 import { Avatar, Group, Menu, Text, UnstyledButton } from '@mantine/core';
 import { IconChevronDown, IconLogout } from '@tabler/icons';
 import { useNavigate } from 'react-router-dom';
-import { useUserStore } from '@hooks/useUser';
+import { useUserStore } from '@hooks/_useUser';
 import { removeAuth } from '@utils/auth';
 
 export function ProfileAvatar() {

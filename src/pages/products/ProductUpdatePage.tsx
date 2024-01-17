@@ -27,7 +27,7 @@ export function ProductUpdatePage() {
   useEffect(() => {
     if (isSuccess) {
       showNotification({ message: 'Product updated', color: 'green' });
-      navigate('/d/products');
+      navigate('/d/stats/products');
     }
   });
 

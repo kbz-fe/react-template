@@ -8,14 +8,14 @@ export function ActionItem({ row }: any) {
       <ActionIcon
         component={Link}
         aria-label="View product"
-        to={`/d/products/${row.original.id}`}
+        to={`/d/stats/products/${row.original.id}`}
       >
         <IconEye />
       </ActionIcon>
       <ActionIcon
         component={Link}
         aria-label="Edit product"
-        to={`/d/products/edit/${row.original.id}`}
+        to={`/d/stats/products/edit/${row.original.id}`}
       >
         <IconEdit />
       </ActionIcon>

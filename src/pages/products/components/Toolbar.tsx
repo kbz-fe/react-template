@@ -11,7 +11,7 @@ export function Toolbar() {
         component={NavLink}
         bg="primary.5"
         rightIcon={<IconPlus />}
-        to="/d/products/create"
+        to="/d/stats/products/create"
       >
         Create New Product
       </Button>

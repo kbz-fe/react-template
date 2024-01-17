@@ -33,20 +33,29 @@ export const router = createBrowserRouter([
             element: <DashboardPage />,
           },
           {
-            path: 'products',
-            element: <ProductListPage />,
-          },
-          {
-            path: 'products/create',
-            element: <ProductCreatePage />,
-          },
-          {
-            path: 'products/:productId',
-            element: <ProductDetailPage />,
-          },
-          {
-            path: 'products/edit/:productId',
-            element: <ProductUpdatePage />,
+            path: 'stats',
+            children: [
+              {
+                path: 'products',
+                element: <ProductListPage />,
+              },
+              {
+                path: 'products/create',
+                element: <ProductCreatePage />,
+              },
+              {
+                path: 'products/:productId',
+                element: <ProductDetailPage />,
+              },
+              {
+                path: 'products/edit/:productId',
+                element: <ProductUpdatePage />,
+              },
+              {
+                path: 'orders',
+                element: <>Orders</>,
+              },
+            ],
           },
           {
             path: '*',

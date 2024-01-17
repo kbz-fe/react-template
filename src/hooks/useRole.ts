@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useUserStore } from '@hooks/useUser';
+import { useUserStore } from '@hooks/_useUser';
 
 export function useRole() {
   const { user } = useUserStore((state: any) => state);

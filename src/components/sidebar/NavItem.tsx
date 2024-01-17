@@ -1,78 +1,77 @@
-import { Group, Box, Text, UnstyledButton, createStyles } from '@mantine/core';
+import { createStyles, NavLink } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 import { TablerIcon } from '@tabler/icons';
 import { useNavigate, useMatch } from 'react-router-dom';
 import { useIsMobile } from '@hooks/useIsMobile';
 
-const useStyles = createStyles((theme, { active }: { active: boolean }) => {
-  return {
-    control: {
-      fontWeight: 500,
-      display: 'block',
-      width: '100%',
-      padding: `${theme.spacing.xs} ${theme.spacing.md}`,
-      color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
-      fontSize: theme.fontSizes.sm,
-
-      '&:hover': {
-        backgroundColor:
-          theme.colorScheme === 'dark'
-            ? theme.colors.dark[7]
-            : theme.colors.gray[0],
-        color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-      },
-    },
-
-    link: {
-      display: 'flex',
-      alignItems: 'center',
-      color:
-        theme.colorScheme === 'dark'
-          ? theme.colors[active ? 'primary' : 'gray'][0]
-          : theme.colors[active ? 'primary' : 'gray'][7],
-    },
-  };
-});
+const useStyles = createStyles((theme) => ({
+  root: {
+    height: '58px',
+    padding: `${theme.spacing.xs} ${theme.spacing.md}`,
+    gap: theme.spacing.xs,
+  },
+  label: {
+    fontWeight: 500,
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.gray[0]
+        : theme.colors.gray[7],
+  },
+  activeLabel: {
+    fontWeight: 500,
+    color: theme.colorScheme === 'dark' ? 'white' : theme.colors.primary[5],
+  },
+}));
 
 interface NavItemProps {
+  item: {
+    icon?: TablerIcon;
+    label: string;
+    to: string;
+    children?:
+      | {
+          label: string;
+          to: string;
+        }[]
+      | undefined;
+  };
+  isChild?: boolean;
   hidden?: boolean;
-  label: string;
-  icon?: TablerIcon;
-  to: string;
   children?: React.ReactNode;
   onClick: () => void;
 }
 
-export function NavItem({
-  children,
-  hidden,
-  icon: Icon,
-  label,
-  to,
-  onClick,
-}: NavItemProps) {
+export function NavItem({ item, hidden, isChild, onClick }: NavItemProps) {
+  const [opened, { toggle }] = useDisclosure();
   const navigate = useNavigate();
-  const isActive = useMatch(to);
+  const isActive = useMatch(item.to);
   const isMobile = useIsMobile();
-  const { classes } = useStyles({ active: Boolean(isActive) });
+  const { classes } = useStyles();
 
-  const handleClick = () => {
+  const handleClick = (href: string) => {
     if (isMobile) onClick();
-    if (to) navigate(to);
+    if (href) navigate(href);
   };
 
   return (
-    <UnstyledButton onClick={handleClick} className={classes.control}>
-      <Group position="apart" spacing={0}>
-        <Box className={classes.link}>
-          {Icon && <Icon size={22} />}
-          {children}
-          {!hidden && (
-            <Text ml="md" tt="capitalize">
-              {label}
-            </Text>
-          )}
-        </Box>
-      </Group>
-    </UnstyledButton>
+    <NavLink
+      opened={opened}
+      label={hidden ? '' : item.label}
+      onClick={() => {
+        toggle();
+        if (!item.children) handleClick(item.to);
+      }}
+      icon={item.icon && <item.icon size={22} />}
+      active={isChild ? !hidden && Boolean(isActive) : Boolean(isActive)}
+      childrenOffset={36}
+      classNames={{
+        root: classes.root,
+        label: isActive ? classes.activeLabel : classes.label,
+      }}
+    >
+      {item.children?.map((child) => (
+        <NavItem isChild key={child.to} item={child} onClick={onClick} />
+      ))}
+    </NavLink>
   );
 }

@@ -53,7 +53,7 @@ export function ProductDetailPage() {
               color="gray"
               variant="subtle"
               leftIcon={<IconEdit />}
-              to={`/d/products/edit/${productId}`}
+              to={`/d/stats/products/edit/${productId}`}
             >
               Edit
             </Button>
