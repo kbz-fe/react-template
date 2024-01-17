@@ -26,11 +26,6 @@ export function DataTable<TData extends Record<string, any> = object>({
   return (
     <Box>
       <Group pb="md" position="apart" align="baseline">
-        {title && (
-          <Title order={5} c="primary">
-            {title}
-          </Title>
-        )}
         <Space />
         {actions}
       </Group>

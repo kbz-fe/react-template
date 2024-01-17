@@ -80,12 +80,12 @@ export function ProductListPage() {
           enableRowActions
           data={data?.products ?? []}
           total={data?.total}
-          title="All Product List"
           state={{
             isLoading,
           }}
           actions={<Toolbar />}
           renderRowActions={({ row }) => <ActionItem row={row} />}
+          positionActionsColumn="last"
         />
       </Box>
     </Card>
