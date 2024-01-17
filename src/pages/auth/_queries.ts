@@ -3,8 +3,8 @@ import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { DASHBOARD_ROUTE } from '@config/const';
 import { useUserStore } from '@hooks/_useUser';
-import { login } from '@services/auth';
-import { setAuth } from '@utils/auth';
+import { login } from '@services/authApi';
+import { setAuth } from '@utils/_auth';
 
 export function useLogin() {
   const navigate = useNavigate();

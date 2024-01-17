@@ -1,17 +1,20 @@
 import { I18nextProvider } from 'react-i18next';
 import { Provider } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
+import { PersistGate } from 'redux-persist/es/integration/react';
 import { MantineConfig } from '@components/core';
 import i18n from '@config/i18n';
 import { router } from '@config/routes';
-import { store } from './store';
+import { persistor, store } from './store';
 
 function App() {
   return (
     <I18nextProvider i18n={i18n}>
       <MantineConfig>
         <Provider store={store}>
-          <RouterProvider router={router} />
+          <PersistGate loading={null} persistor={persistor}>
+            <RouterProvider router={router} />
+          </PersistGate>
         </Provider>
       </MantineConfig>
     </I18nextProvider>

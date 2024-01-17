@@ -3,7 +3,7 @@ import { Title } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import { useNavigate } from 'react-router-dom';
 import { Card } from '@components/common';
-import { useCreateProductMutation } from '@services/products';
+import { useCreateProductMutation } from '@services/productsApi';
 import { ProductForm } from './components/ProductForm';
 
 export function ProductCreatePage() {

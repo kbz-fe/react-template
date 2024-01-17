@@ -5,7 +5,7 @@ import { Card } from '@components/common';
 import { DataTable, renderAmountCell } from '@components/core';
 import { useIsMobile } from '@hooks/useIsMobile';
 import { useParamsHelper } from '@hooks/useParamsHelper';
-import { useGetProductsQuery } from '@services/products';
+import { useGetProductsQuery } from '@services/productsApi';
 import { ActionItem } from './components/ActionItems';
 import { Toolbar } from './components/Toolbar';
 

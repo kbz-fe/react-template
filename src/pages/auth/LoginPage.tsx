@@ -8,14 +8,22 @@ import {
   TextInput,
 } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
+import { loginSuccess } from '@store/authSlice';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import logo from '@assets/images/logo/logo-no-slogan.webp';
+import { DASHBOARD_ROUTE } from '@config/const';
 import { useAuthRoute } from '@hooks/useAuth';
+import { useLoginMutation } from '@services/authApi';
 import { loginSchema } from '@utils/schema';
 import { BgBlue } from './components/BgBlue';
 import { BgRed } from './components/BgRed';
 
 export function LoginPage() {
   useAuthRoute();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [login, { isLoading }] = useLoginMutation();
 
   const form = useForm({
     initialValues: {
@@ -24,6 +32,27 @@ export function LoginPage() {
     },
     validate: zodResolver(loginSchema),
   });
+
+  const handleSubmit = async () => {
+    const res: any = await login({
+      username: 'kminchelle',
+      password: '0lelplR',
+    });
+
+    if (res.error) {
+      // handle error
+    }
+
+    if (res.data) {
+      dispatch(
+        loginSuccess({
+          token: res.data.token,
+          user: { username: res.data.username },
+        })
+      );
+      navigate(DASHBOARD_ROUTE);
+    }
+  };
 
   return (
     <Center
@@ -42,6 +71,7 @@ export function LoginPage() {
         radius="md"
         shadow="md"
         component="form"
+        onSubmit={form.onSubmit(handleSubmit)}
       >
         <Box component="img" alt="logo" src={logo} height={50} />
         <TextInput
@@ -56,7 +86,7 @@ export function LoginPage() {
           label="Password"
           {...form.getInputProps('password')}
         />
-        <Button fullWidth mt="xl" type="submit">
+        <Button loading={isLoading} fullWidth mt="xl" type="submit">
           Login
         </Button>
       </Paper>

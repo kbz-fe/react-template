@@ -1,17 +1,14 @@
 import { Avatar, Group, Menu, Text, UnstyledButton } from '@mantine/core';
+import { logout } from '@store/authSlice';
 import { IconChevronDown, IconLogout } from '@tabler/icons';
-import { useNavigate } from 'react-router-dom';
-import { useUserStore } from '@hooks/_useUser';
-import { removeAuth } from '@utils/auth';
+import { useDispatch, useSelector } from 'react-redux';
 
 export function ProfileAvatar() {
-  const navigate = useNavigate();
-  const { user, removeUser } = useUserStore((state: any) => state);
+  const dispatch = useDispatch();
+  const { user } = useSelector((state: any) => state.auth);
 
   const handleLogout = async () => {
-    removeAuth();
-    removeUser();
-    navigate('/');
+    dispatch(logout());
   };
 
   if (!user) return <Avatar radius="xl" onClick={handleLogout} />;
@@ -22,7 +19,7 @@ export function ProfileAvatar() {
           <Group>
             <Avatar radius="xl" />
             <Text truncate maw={200}>
-              ({user.TYPE_OF_USER}) {user?.USER_NAME}
+              {user.username}
             </Text>
             <IconChevronDown size={18} />
           </Group>

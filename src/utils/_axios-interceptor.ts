@@ -1,7 +1,7 @@
 import { showNotification } from '@mantine/notifications';
 import axios, { AxiosError } from 'axios';
 import { startsWith } from 'lodash-es';
-import { getAuth, removeAuth } from './auth';
+import { getAuth, removeAuth } from './_auth';
 
 const API_URL = import.meta.env.VITE_API_URL ?? '';
 
