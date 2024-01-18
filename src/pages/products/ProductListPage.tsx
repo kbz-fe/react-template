@@ -5,7 +5,7 @@ import { Card } from '@components/common';
 import { DataTable, renderAmountCell } from '@components/core';
 import { useIsMobile } from '@hooks/useIsMobile';
 import { useParamsHelper } from '@hooks/useParamsHelper';
-import { useGetProductsQuery } from '@services/productsApi';
+import { useGetProductsQuery } from '@services/products.api';
 import { ActionItem } from './components/ActionItems';
 import { Toolbar } from './components/Toolbar';
 
@@ -41,7 +41,7 @@ const columns: MRT_ColumnDef<Product>[] = [
 ];
 
 /**
- * Product Search is not implemented yet due to API limitation
+ * Filter Products by Searched Text is not implemented yet due to API limitation
  */
 
 export function ProductListPage() {
@@ -61,20 +61,26 @@ export function ProductListPage() {
 
   return (
     <Card
-      pl={0}
-      style={{
+      p={0}
+      sx={{
         display: 'flex',
         flexDirection: isMobile ? 'column' : 'row',
         height: '100%',
       }}
     >
-      <Stack style={{ flexBasis: 180, gap: 0, fontWeight: 500 }}>
+      <Stack sx={{ flexBasis: 180, gap: 0, fontWeight: 500 }}>
         <NavLink active component={Link} to="#" label="Inbox" />
       </Stack>
 
       <Divider orientation="vertical" mr={theme.spacing.xs} />
 
-      <Box style={{ flexGrow: 1, overflowX: 'scroll' }}>
+      <Box
+        sx={{
+          flexBasis: 0,
+          flexGrow: 1,
+          overflowX: 'scroll',
+        }}
+      >
         <DataTable
           columns={columns}
           enableRowActions
@@ -82,10 +88,19 @@ export function ProductListPage() {
           total={data?.total}
           state={{
             isLoading,
+            columnPinning: {
+              right: ['mrt-row-actions'],
+            },
           }}
           actions={<Toolbar />}
           renderRowActions={({ row }) => <ActionItem row={row} />}
           positionActionsColumn="last"
+          enablePinning
+          mantineTableContainerProps={{
+            sx: {
+              height: 'calc(100vh - 300px)',
+            },
+          }}
         />
       </Box>
     </Card>

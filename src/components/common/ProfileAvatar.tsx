@@ -1,9 +1,9 @@
 import { Avatar, Group, Menu, Text, UnstyledButton } from '@mantine/core';
-import { logout } from '@store/authSlice';
-import { useAppSelector } from '@store/index';
 import { IconChevronDown, IconLogout } from '@tabler/icons';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { logout } from '@services/auth.slice';
+import { useAppSelector } from '@services/index';
 
 export function ProfileAvatar() {
   const dispatch = useDispatch();

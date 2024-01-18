@@ -7,7 +7,7 @@ import { FormLoading } from '@components/loading';
 import {
   useGetProductQuery,
   useUpdateProductMutation,
-} from '@services/productsApi';
+} from '@services/products.api';
 import { ProductForm } from './components/ProductForm';
 
 export function ProductUpdatePage() {

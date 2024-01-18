@@ -8,13 +8,13 @@ import {
   TextInput,
 } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
-import { loginSuccess } from '@store/authSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import logo from '@assets/images/logo/logo-no-slogan.webp';
 import { DASHBOARD_ROUTE } from '@config/const';
 import { useAuthRoute } from '@hooks/useAuth';
-import { useLoginMutation } from '@services/authApi';
+import { useLoginMutation } from '@services/auth.api';
+import { loginSuccess } from '@services/auth.slice';
 import { loginSchema } from '@utils/schema';
 import { BgBlue } from './components/BgBlue';
 import { BgRed } from './components/BgRed';

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { useAppSelector } from '@store/index';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { DASHBOARD_ROUTE } from '@config/const';
+import { useAppSelector } from '@services/index';
 
 export function useAuthedRoute() {
   const navigate = useNavigate();

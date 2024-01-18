@@ -5,7 +5,7 @@ import { PersistGate } from 'redux-persist/es/integration/react';
 import { MantineConfig } from '@components/core';
 import i18n from '@config/i18n';
 import { router } from '@config/routes';
-import { persistor, store } from './store';
+import { persistor, store } from './services';
 
 function App() {
   return (

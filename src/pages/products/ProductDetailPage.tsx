@@ -9,7 +9,7 @@ import { FormLoading } from '@components/loading';
 import {
   useDeleteProductMutation,
   useGetProductQuery,
-} from '@services/productsApi';
+} from '@services/products.api';
 import { DetailItem } from './components/DetailItem';
 
 export function ProductDetailPage() {

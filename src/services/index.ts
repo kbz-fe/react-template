@@ -2,9 +2,9 @@ import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { useDispatch } from 'react-redux';
 import { persistStore } from 'redux-persist';
-import { authApi } from '@services/authApi';
-import { productApi } from '@services/productsApi';
-import authSlice from './authSlice';
+import { authApi } from './auth.api';
+import authSlice from './auth.slice';
+import { productApi } from './products.api';
 
 export const store = configureStore({
   reducer: {
