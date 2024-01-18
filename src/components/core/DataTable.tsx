@@ -22,8 +22,10 @@ export function DataTable<TData extends Record<string, any> = object>({
   }, [total]);
 
   return (
-    <Box>
+    <>
       <MantineReactTable
+        enablePinning
+        enableRowActions
         enableTopToolbar={false}
         enableBottomToolbar={false}
         enableDensityToggle={false}
@@ -51,6 +53,6 @@ export function DataTable<TData extends Record<string, any> = object>({
         {...props}
       />
       <Pagination total={totalPage} />
-    </Box>
+    </>
   );
 }

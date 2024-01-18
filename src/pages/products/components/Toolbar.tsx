@@ -5,21 +5,15 @@ import { Search } from '@components/common';
 
 export function Toolbar() {
   return (
-    <Group
-      position="apart"
-      mb={32}
-      style={{
-        flexGrow: 1,
-      }}
-    >
+    <Group position="apart" mb={32}>
       <Search />
       <Button
         component={NavLink}
         bg="primary.5"
-        rightIcon={<IconPlus />}
+        leftIcon={<IconPlus />}
         to="/d/stats/products/create"
       >
-        Create New Product
+        Add New
       </Button>
     </Group>
   );

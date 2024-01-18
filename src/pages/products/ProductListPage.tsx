@@ -1,12 +1,4 @@
-import {
-  Box,
-  Divider,
-  Group,
-  NavLink,
-  Space,
-  Stack,
-  useMantineTheme,
-} from '@mantine/core';
+import { Box, Divider, NavLink, Stack, useMantineTheme } from '@mantine/core';
 import { MRT_ColumnDef } from 'mantine-react-table';
 import { Link } from 'react-router-dom';
 import { Card } from '@components/common';
@@ -69,33 +61,21 @@ export function ProductListPage() {
 
   return (
     <Card
-      p={0}
       sx={{
         display: 'flex',
         flexDirection: isMobile ? 'column' : 'row',
-        height: '100%',
       }}
     >
-      <Stack sx={{ flexBasis: 180, gap: 0, fontWeight: 500 }}>
+      <Box w={isMobile ? '100%' : 250} mb={100}>
         <NavLink active component={Link} to="#" label="Inbox" />
-      </Stack>
-
+        <NavLink component={Link} to="#" label="Approve" />
+        <NavLink component={Link} to="#" label="Reject" />
+      </Box>
       <Divider orientation="vertical" mr={theme.spacing.xs} />
-
-      <Box
-        p={theme.spacing.xs}
-        sx={{
-          overflowX: 'auto',
-        }}
-      >
-        <Group pb="md" position="apart" align="baseline">
-          <Space />
-          <Toolbar />
-        </Group>
-
+      <Box sx={{ width: '100%', overflowX: 'auto' }}>
+        <Toolbar />
         <DataTable
           columns={columns}
-          enableRowActions
           data={data?.products ?? []}
           total={data?.total}
           state={{
@@ -106,11 +86,9 @@ export function ProductListPage() {
           }}
           renderRowActions={({ row }) => <ActionItem row={row} />}
           positionActionsColumn="last"
-          enablePinning
           mantineTableContainerProps={{
-            sx: {
-              height: 'calc(100vh - 300px)',
-            },
+            w: '100%',
+            h: 'calc(100vh - 300px)',
           }}
         />
       </Box>
