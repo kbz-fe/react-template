@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Page404 } from '@components/page';
-import { DashboardLayout, RootLayout } from '@layouts';
+import { DashboardLayout } from '@layouts';
 import { LoginPage } from '@pages/auth';
 import { DashboardPage } from '@pages/dashboard';
 import {
@@ -14,7 +14,6 @@ import { DASHBOARD_ROUTE } from './const';
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <RootLayout />,
     children: [
       {
         path: '',
