@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Box, Group, Space, Title } from '@mantine/core';
+import { Box, Group, Title } from '@mantine/core';
 import {
   MantineReactTable,
   type MantineReactTableProps,
@@ -7,14 +7,12 @@ import {
 import { Pagination } from './Pagination';
 
 interface TableProps {
-  actions?: React.ReactElement;
   title?: string;
   total?: number;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function DataTable<TData extends Record<string, any> = object>({
-  actions,
   title,
   total = 0,
   ...props
@@ -25,12 +23,7 @@ export function DataTable<TData extends Record<string, any> = object>({
 
   return (
     <Box>
-      <Group pb="md" position="apart" align="baseline">
-        <Space />
-        {actions}
-      </Group>
       <MantineReactTable
-        // initialState={{ density: 'sm' }}
         enableTopToolbar={false}
         enableBottomToolbar={false}
         enableDensityToggle={false}

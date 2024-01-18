@@ -1,4 +1,12 @@
-import { Box, Divider, NavLink, Stack, useMantineTheme } from '@mantine/core';
+import {
+  Box,
+  Divider,
+  Group,
+  NavLink,
+  Space,
+  Stack,
+  useMantineTheme,
+} from '@mantine/core';
 import { MRT_ColumnDef } from 'mantine-react-table';
 import { Link } from 'react-router-dom';
 import { Card } from '@components/common';
@@ -75,12 +83,16 @@ export function ProductListPage() {
       <Divider orientation="vertical" mr={theme.spacing.xs} />
 
       <Box
+        p={theme.spacing.xs}
         sx={{
-          flexBasis: 0,
-          flexGrow: 1,
-          overflowX: 'scroll',
+          overflowX: 'auto',
         }}
       >
+        <Group pb="md" position="apart" align="baseline">
+          <Space />
+          <Toolbar />
+        </Group>
+
         <DataTable
           columns={columns}
           enableRowActions
@@ -92,7 +104,6 @@ export function ProductListPage() {
               right: ['mrt-row-actions'],
             },
           }}
-          actions={<Toolbar />}
           renderRowActions={({ row }) => <ActionItem row={row} />}
           positionActionsColumn="last"
           enablePinning
